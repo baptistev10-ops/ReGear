@@ -1,7 +1,7 @@
 export default function Homepage() {
   return (
     <>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 w-full mt-5">
         <h1 className="font-bold font-[Roboto] font-[400] text-2xl text-center">
           Le marketplace des composants informatiques
         </h1>
