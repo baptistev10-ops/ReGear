@@ -3,6 +3,7 @@ import Filterbar from "../../components/Filters/Filterbar";
 import FilterButton from "../../components/Filters/Filterbutton";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { useState } from "react";
+import Header from "../../components/Header";
 
 export default function Homepage() {
   const [filter, setFilter] = useState(false);
@@ -12,6 +13,7 @@ export default function Homepage() {
   };
   return (
     <>
+      <Header />
       <div className="flex flex-col gap-2 w-full mt-5">
         <h1 className="font-roboto font-normal text-2xl text-center">
           Le marketplace des composants informatiques

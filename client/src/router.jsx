@@ -3,9 +3,8 @@ import App from "./App";
 import Homepage from "./pages/Homepage/Homepage";
 import Vendre from "./pages/Vendre";
 import Annonces from "./pages/Annonces";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Login/Register";
 import Errorpage from "./pages/Error/Errorpage";
+import AuthPage from "./pages/Login/AuthPage";
 
 export const router = createBrowserRouter([
   {
@@ -27,11 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
+        element: <AuthPage />,
       },
     ],
   },

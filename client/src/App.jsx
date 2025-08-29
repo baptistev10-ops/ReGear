@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col items-center">
-      <Header />
       <main className="flex flex-col items-center w-[80vw]">
         <Outlet />
       </main>
