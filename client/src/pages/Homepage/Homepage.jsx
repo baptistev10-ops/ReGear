@@ -7,7 +7,6 @@ import Header from "../../components/Header";
 
 export default function Homepage() {
   const [filter, setFilter] = useState(false);
-
   const activeFilter = () => {
     setFilter(!filter);
   };

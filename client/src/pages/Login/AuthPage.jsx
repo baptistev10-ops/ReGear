@@ -1,8 +1,17 @@
+import { NavLink } from "react-router-dom";
 import computerimg from "../../assets/images/gaming-computer.webp";
 import Login from "../../components/Auth/Login";
+import { IoArrowBack } from "react-icons/io5";
+import { useState } from "react";
+import Register from "../../components/Auth/Register";
+
 export default function AuthPage() {
+  const [switchLog, setSwitchLog] = useState(true);
+  const activeSwitchLog = () => {
+    setSwitchLog(!switchLog);
+  };
   return (
-    <div className="bg-blue-50 h-screen w-screen flex">
+    <div className="bg-blue-50 h-screen w-screen flex justify-center items-center gap-24">
       <div className="flex flex-col gap-5">
         <div>
           <h1 className="font-roboto font-normal text-2xl text-center">
@@ -32,7 +41,29 @@ export default function AuthPage() {
           </li>
         </ul>
       </div>
-      <Login />
+      {switchLog ? (
+        <div className="mb-16">
+          <NavLink
+            className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4"
+            to="/"
+          >
+            <IoArrowBack className="text-sm" />
+            <span className="text-sm">Retour</span>
+          </NavLink>
+          <Login activeSwitchLog={activeSwitchLog} />
+        </div>
+      ) : (
+        <div className="mb-16">
+          <NavLink
+            className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4"
+            to="/"
+          >
+            <IoArrowBack className="text-sm" />
+            <span className="text-sm">Retour</span>
+          </NavLink>
+          <Register activeSwitchLog={activeSwitchLog} />
+        </div>
+      )}
     </div>
   );
 }
