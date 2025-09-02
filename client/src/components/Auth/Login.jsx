@@ -1,15 +1,75 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Input from "../Common/Input";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { FiLock } from "react-icons/fi";
 import FilterButton from "../Filters/Filterbutton";
 import { FaGoogle } from "react-icons/fa";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import toast from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
+import { useForm } from "react-hook-form";
 
 export default function Login({ activeSwitchLog }) {
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
+  const defaultValues = {
+    data: "",
+    password: "",
+  };
+
+  const schema = yup.object({
+    data: yup.string().required("Ce champ est obligatoire"),
+    password: yup.string().required("Le mot de passe est obligatoire"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues,
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+
+  async function submit(values) {
+    // console.log(values);
+    try {
+      const response = await fetch("http://localhost:3000/user/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      const responseFromBackend = await response.json();
+      console.log(responseFromBackend);
+
+      if (response.ok) {
+        toast.success("Bien connecté");
+        login(responseFromBackend.user);
+        navigate("/");
+        reset(defaultValues);
+      } else {
+        toast.error(responseFromBackend.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // reset(defaultValues);
+    // requete HTTP
+  }
   return (
     <>
-      <form className="flex flex-col gap-4 bg-white rounded-2xl shadow-lg border p-6 max-h-[500px] min-w-[400px]">
+      <form
+        className="flex flex-col gap-4 bg-white rounded-2xl shadow-lg border p-6 max-h-[500px] min-w-[400px]"
+        onSubmit={handleSubmit(submit)}
+      >
         <h2 className="text-2xl text-center">Connexion</h2>
         <div className="bg-stone-100 rounded-full h-[2rem] flex items-center justify-between">
           <button className="w-1/2 rounded-full bg-white m-1 text-sm p-1">
@@ -28,24 +88,32 @@ export default function Login({ activeSwitchLog }) {
               Email <span className="text-red-600">*</span>
             </label>
             <Input
+              {...register("data")}
               id="email"
               type="email"
               icon={FaRegEnvelope}
               placeholder="votre@email.com"
               className="text-sm focus-within:border focus-within:border-gray-400 focus-within:ring-4 focus-within:ring-gray-300 transition ease-out duration-100 pl-3"
             />
+            {errors.data && (
+              <p className="text-red-500">{errors.data.message}</p>
+            )}
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="password" className="mb-2">
               Mot de passe <span className="text-red-600">*</span>
             </label>
             <Input
+              {...register("password")}
               id="password"
               type="password"
               icon={FiLock}
               placeholder="••••••••"
               className="text-sm focus-within:border focus-within:border-gray-400 focus-within:ring-4 focus-within:ring-gray-300 transition ease-out duration-100 pl-3"
             />
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
           </div>
         </div>
 
