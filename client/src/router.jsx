@@ -5,11 +5,13 @@ import Vendre from "./pages/Vendre";
 import Annonces from "./pages/Annonces";
 import Errorpage from "./pages/Error/Errorpage";
 import AuthPage from "./pages/Login/AuthPage";
+import { rootLoader } from "./loaders/rootLoaders";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: rootLoader,
     errorElement: <Errorpage />,
     children: [
       {

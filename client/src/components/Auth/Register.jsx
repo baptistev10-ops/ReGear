@@ -75,6 +75,7 @@ export default function Register({ activeSwitchLog }) {
   async function submit(values) {
     try {
       const responseFromBackend = await signUp(values);
+      console.log(responseFromBackend);
       if (responseFromBackend.message !== "Déjà inscrit") {
         toast.success(responseFromBackend.message);
         navigate("/login");
@@ -96,12 +97,16 @@ export default function Register({ activeSwitchLog }) {
         <h2 className="text-2xl text-center">Inscription</h2>
         <div className="bg-stone-100 rounded-full h-[2rem] flex items-center justify-between">
           <button
+            type="button"
             onClick={activeSwitchLog}
             className="w-1/2 rounded-full m-1 text-sm p-1"
           >
             Connexion
           </button>
-          <button className="w-1/2 rounded-full bg-white m-1 text-sm p-1">
+          <button
+            type="button"
+            className="w-1/2 rounded-full bg-white m-1 text-sm p-1"
+          >
             Inscription
           </button>
         </div>
@@ -189,7 +194,10 @@ export default function Register({ activeSwitchLog }) {
           </div>
         </div>
 
-        <button className="bg-gray-950 text-white py-2 px-4 rounded-lg">
+        <button
+          type="submit"
+          className="bg-gray-950 text-white py-2 px-4 rounded-lg"
+        >
           S'inscrire
         </button>
         <NavLink className="text-center text-sm">Mot de passe oublié ?</NavLink>

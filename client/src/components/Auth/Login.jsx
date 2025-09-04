@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
+import { signIn } from "../../api/auth.api";
 
 export default function Login({ activeSwitchLog }) {
   const navigate = useNavigate();
@@ -40,23 +41,17 @@ export default function Login({ activeSwitchLog }) {
   async function submit(values) {
     // console.log(values);
     try {
-      const response = await fetch("http://localhost:3000/user/login", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      const responseFromBackend = await response.json();
-      console.log(responseFromBackend);
+      const userConnected = await signIn(values);
+      console.log(values);
+      console.log(userConnected);
 
-      if (response.ok) {
+      if (userConnected.user) {
         toast.success("Bien connecté");
-        login(responseFromBackend.user);
+        login(userConnected.user);
         navigate("/");
         reset(defaultValues);
       } else {
-        toast.error(responseFromBackend.message);
+        toast.error(userConnected.message);
       }
     } catch (error) {
       console.log(error);
@@ -72,10 +67,14 @@ export default function Login({ activeSwitchLog }) {
       >
         <h2 className="text-2xl text-center">Connexion</h2>
         <div className="bg-stone-100 rounded-full h-[2rem] flex items-center justify-between">
-          <button className="w-1/2 rounded-full bg-white m-1 text-sm p-1">
+          <button
+            type="button"
+            className="w-1/2 rounded-full bg-white m-1 text-sm p-1"
+          >
             Connexion
           </button>
           <button
+            type="button"
             onClick={activeSwitchLog}
             className="w-1/2 rounded-full m-1 text-sm p-1"
           >

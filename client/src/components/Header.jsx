@@ -4,9 +4,7 @@ import { FiUser } from "react-icons/fi";
 import { useAuth } from "./context/AuthContext";
 
 export default function Header() {
-  const { userConnected } = useAuth();
-  const { logout } = useAuth();
-
+  const { userConnected, logout } = useAuth();
   return (
     <header className="backdrop-blur-sm bg-white bg-opacity-70 max-h-[100px] flex justify-center items-center border-b border-gray-300 sticky top-0 w-screen">
       <NavLink to="/" className="h-full w-[25vw] ml-10">
