@@ -6,7 +6,7 @@ export async function signUp(values) {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
     });
     const newUserMessage = await response.json();
@@ -22,7 +22,7 @@ export async function signIn(values) {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       credentials: "include",
     });
