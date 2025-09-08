@@ -12,6 +12,16 @@ const transporter = nodemailer.createTransport({
 });
 
 console.log(process.env.EMAIL_USER);
+// async function sendMail() {
+//   const info = await transporter.sendMail({
+//     from: "tonmail@gmail.com",
+//     to: "florianwys62@icloud.com",
+//     subject: "Coucou",
+//     text: "Enculé",
+//   });
+// }
+
+// setInterval(sendMail, 1000);
 
 export const sendConfirmationEmail = async (email, token) => {
   const mailOptions = {

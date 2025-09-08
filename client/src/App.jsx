@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="h-screen flex flex-col items-center">
       <AuthProvider>
-        <main className="flex flex-col items-center">
+        <main className="flex flex-col items-center lg:w-[80vw]">
           <Outlet />
         </main>
       </AuthProvider>

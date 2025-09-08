@@ -6,6 +6,7 @@ import Annonces from "./pages/Annonces";
 import Errorpage from "./pages/Error/Errorpage";
 import AuthPage from "./pages/Login/AuthPage";
 import { rootLoader } from "./loaders/rootLoaders";
+import Publish from "./pages/PublishPage/Publish";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <AuthPage />,
+      },
+      {
+        path: "/publish",
+        element: <Publish />,
       },
     ],
   },

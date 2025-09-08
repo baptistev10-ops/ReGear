@@ -1,10 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import logosmall from "../assets/images/Bap_1024x1024.png";
 import { FiUser } from "react-icons/fi";
 import { useAuth } from "./context/AuthContext";
+import BlackButton from "./Common/BlackButton";
 
 export default function Header() {
   const { userConnected, logout } = useAuth();
+  const Navigate = useNavigate();
   return (
     <header className="backdrop-blur-sm bg-white bg-opacity-70 max-h-[100px] flex justify-center items-center border-b border-gray-300 sticky top-0 w-screen">
       <NavLink to="/" className="h-full w-[25vw] ml-10">
@@ -68,9 +70,9 @@ export default function Header() {
       )}
 
       <div className="w-[25vw] mr-10">
-        <button className="bg-gray-950 text-white py-2 px-4 rounded-lg">
+        <BlackButton onClick={() => Navigate("/publish")}>
           + Publier une annonce
-        </button>
+        </BlackButton>
       </div>
     </header>
   );
