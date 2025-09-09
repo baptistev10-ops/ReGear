@@ -7,61 +7,62 @@ export default function Categories() {
         <img className="w-[24px]" src={logosmall} alt="Logo Regear" />
         <p className="text-sm">Quelle catégorie de composant vendez-vous ?</p>
       </div>
-      <ul className="flex flex-wrap gap-2 mt-3 max-w-[50vw]">
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+
+      <div className="gap-2 mt-3 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>🔧</h2>
           <h3>Processeur</h3>
-          <p>Intel, Amd - Tous sockets</p>
-          <p>Prix moyen: 50€ - 800€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">Intel, Amd - Tous sockets</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 50€ - 800€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>🎮</h2>
           <h3>Cartes graphiques</h3>
-          <p>NVIDIA, AMD - Gaming et pro</p>
-          <p>Prix moyen: 100€ - 2000€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">NVIDIA, AMD - Gaming et pro</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 100€ - 2000€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>💾</h2>
           <h3>Mémoire RAM</h3>
-          <p>DDR4, DDR5 - Toutes capacités</p>
-          <p>prix moyen: 30 - 500€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">DDR4, DDR5 - Toutes capacités</p>
+          <p className="text-gray-500 text-sm">prix moyen: 30 - 500€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>🖥️</h2>
           <h3>Cartes Mères</h3>
-          <p>ATX, Micro-ATX, Mini-ITX</p>
-          <p>Prix moyen: 60€ - 600€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">ATX, Micro-ATX, Mini-ITX</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 60€ - 600€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>💿</h2>
           <h3>Stockage</h3>
-          <p>SSD, HDD, NVMe</p>
-          <p>Prix moyen: 25€ - 400€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">SSD, HDD, NVMe</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 25€ - 400€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>⚡</h2>
-          <h3>Alimentations</h3>
-          <p>Modulaires et non-modulaires</p>
-          <p>Prix moyen: 40€ - 300€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <h3>Alimentation</h3>
+          <p className="text-gray-500 text-sm">Modulaires et non-modulaires</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 40€ - 300€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>❄️</h2>
           <h3>Refroidissement</h3>
-          <p>Ventirad, AIO, ventilateurs</p>
-          <p>Prix: 20€ - 200€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">Ventirad, AIO, ventilateurs</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 20€ - 200€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>📦</h2>
           <h3>Boîtiers</h3>
-          <p>Tous formats et designs</p>
-          <p>Prix moyen: 30€ - 200€</p>
-        </li>
-        <li className="flex flex-col items-center border rounded-lg p-2 justify-center gap-1 w-[254px]">
+          <p className="text-gray-500 text-sm">Tous formats et designs</p>
+          <p className="text-gray-500 text-sm">Prix moyen: 30€ - 200€</p>
+        </button>
+        <button className="flex flex-col items-center border rounded-lg p-5 justify-center gap-1 w-[254px]">
           <h2>🖱️</h2>
           <h3>Périphériques</h3>
-          <p>Clavier, souris, écrans</p>
-        </li>
-      </ul>
+          <p className="text-gray-500 text-sm">Clavier, souris, écrans</p>
+        </button>
+      </div>
     </div>
   );
 }
