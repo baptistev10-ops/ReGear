@@ -19,8 +19,8 @@ export default function ProgressBar() {
         <h2 className="font-semibold text-xl">Publier une annonce</h2>
         <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className={`bg-black h-full rounded-full ${
-              selectedCategory ? "transition duration-1000 w-[25%]" : "w-0"
+            className={`bg-black h-full rounded-full transition-all duration-1000  ${
+              selectedCategory ? "w-[25%]" : "w-0"
             }`}
           ></div>
         </div>
