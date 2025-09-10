@@ -7,6 +7,8 @@ import Errorpage from "./pages/Error/Errorpage";
 import AuthPage from "./pages/Login/AuthPage";
 import { rootLoader } from "./loaders/rootLoaders";
 import Publish from "./pages/PublishPage/Publish";
+import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
+import UserConnected from "./components/ProtectedRoutes/UserConnected";
 
 export const router = createBrowserRouter([
   {
@@ -21,11 +23,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/vendre",
-        element: <Vendre />,
+        element: (
+          <UserConnected>
+            <Vendre />
+          </UserConnected>
+        ),
       },
       {
         path: "/annonces",
-        element: <Annonces />,
+        element: (
+          <UserConnected>
+            <Annonces />
+          </UserConnected>
+        ),
       },
       {
         path: "/login",
@@ -33,7 +43,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/publish",
-        element: <Publish />,
+        element: (
+          <UserConnected>
+            <Publish />
+          </UserConnected>
+        ),
       },
     ],
   },

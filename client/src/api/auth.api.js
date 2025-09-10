@@ -48,3 +48,10 @@ export async function getCurrentUser() {
     console.log(error);
   }
 }
+
+export async function signOut() {
+  await fetch(`${BASE_URL}/user/deleteToken`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+}
