@@ -55,3 +55,20 @@ export async function signOut() {
     credentials: "include",
   });
 }
+
+export async function authGoogle(values) {
+  const token = values.credential;
+  try {
+    const response = await fetch(`${BASE_URL}/user/auth-google`, {
+      method: "POST",
+      body: JSON.stringify({ token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const newUserMessage = await response.json();
+    return newUserMessage;
+  } catch (error) {
+    console.log(error);
+  }
+}

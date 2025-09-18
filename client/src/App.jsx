@@ -1,21 +1,24 @@
-import { useState } from "react";
 import "./App.css";
 import { Outlet } from "react-router-dom";
-import Header from "./components/Header";
 import { AuthProvider } from "./components/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { StepProvider } from "./components/context/StepContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
+  const clientId = import.meta.env.VITE_GOOGLE_AUTH;
+  console.log(clientId);
   return (
     <div className="h-screen flex flex-col items-center">
-      <AuthProvider>
-        <StepProvider>
-          <main className="flex flex-col items-center lg:w-[80vw]">
-            <Outlet />
-          </main>
-        </StepProvider>
-      </AuthProvider>
+      <GoogleOAuthProvider clientId={clientId}>
+        <AuthProvider>
+          <StepProvider>
+            <main className="flex flex-col items-center lg:w-[80vw]">
+              <Outlet />
+            </main>
+          </StepProvider>
+        </AuthProvider>
+      </GoogleOAuthProvider>
       <Toaster
         position="top-center"
         reverseOrder={true}

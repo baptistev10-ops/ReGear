@@ -10,7 +10,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
-import { signIn } from "../../api/auth.api";
+import { authGoogle, signIn } from "../../api/auth.api";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login({ activeSwitchLog }) {
   const navigate = useNavigate();
@@ -37,6 +39,15 @@ export default function Login({ activeSwitchLog }) {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
+  async function loginGoogle(values) {
+    try {
+      const response = await authGoogle(values);
+      console.log(response);
+    } catch (error) {
+      toast.error("Erreur de connexion avec Google");
+    }
+  }
 
   async function submit(values) {
     // console.log(values);
@@ -125,10 +136,12 @@ export default function Login({ activeSwitchLog }) {
           <span className="px-2 text-sm">OU</span>
           <hr className="w-1/2" />
         </div>
-        <FilterButton className="text-sm font-semibold flex justify-center gap-3">
-          <FaGoogle />
-          Continuez avec Google
-        </FilterButton>
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            loginGoogle(credentialResponse);
+          }}
+          onError={() => console.log("Login Google Failed")}
+        />
       </form>
     </>
   );
