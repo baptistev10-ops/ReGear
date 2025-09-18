@@ -5,7 +5,7 @@ import { categories } from "../../../utils/categories.data";
 
 export default function Categories() {
   const [cat, setCat] = useState(0);
-  const { addData } = useStep();
+  const { addData, category, setCategory } = useStep();
   const handleClick = (id, label) => {
     addData(label);
     setCat(id);
@@ -17,11 +17,11 @@ export default function Categories() {
         <p className="text-sm">Quelle catégorie de composant vendez-vous ?</p>
       </div>
       <div className="gap-2 mt-3 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-        {categories.map((categorie, index) => (
+        {categories.map((categorie) => (
           <button
-            key={index}
+            key={categorie.id}
             className={`flex flex-col items-center rounded-lg p-5 justify-center gap-1 w-[254px] hover:shadow-lg transition duration-200 ${
-              cat === categorie.id
+              category.choice === categorie.label
                 ? "border-[2px] animate-pulse border-black"
                 : "border"
             }`}
