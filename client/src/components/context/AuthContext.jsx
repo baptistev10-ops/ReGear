@@ -5,6 +5,7 @@ import { signOut } from "../../api/auth.api";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  const [switchLog, setSwitchLog] = useState(true);
   const initialUser = useLoaderData();
   const [userConnected, setUserConnected] = useState(initialUser);
 
@@ -24,6 +25,8 @@ export function AuthProvider({ children }) {
         userConnected,
         login,
         logout,
+        switchLog,
+        setSwitchLog,
       }}
     >
       {children}

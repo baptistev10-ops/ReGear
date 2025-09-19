@@ -11,8 +11,8 @@ import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 import { authGoogle, signIn } from "../../api/auth.api";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import { useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login({ activeSwitchLog }) {
   const navigate = useNavigate();
@@ -40,14 +40,23 @@ export default function Login({ activeSwitchLog }) {
     mode: "onChange",
   });
 
-  async function loginGoogle(values) {
-    try {
-      const response = await authGoogle(values);
-      console.log(response);
-    } catch (error) {
-      toast.error("Erreur de connexion avec Google");
-    }
-  }
+  const loginGoogle = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const response = await authGoogle(tokenResponse);
+        if (response.message) {
+          toast.error(response.message);
+        } else {
+          toast.success("Bienvenue");
+          login(response);
+          navigate("/");
+        }
+      } catch (error) {
+        toast.error("Erreur de connexion via Google");
+      }
+    },
+    onError: () => toast.error("Google Login échoué"),
+  });
 
   async function submit(values) {
     // console.log(values);
@@ -136,12 +145,14 @@ export default function Login({ activeSwitchLog }) {
           <span className="px-2 text-sm">OU</span>
           <hr className="w-1/2" />
         </div>
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            loginGoogle(credentialResponse);
-          }}
-          onError={() => console.log("Login Google Failed")}
-        />
+
+        <button
+          type="button"
+          onClick={loginGoogle}
+          className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-100 transition"
+        >
+          <FcGoogle /> <span>Se connecter avec Google</span>
+        </button>
       </form>
     </>
   );

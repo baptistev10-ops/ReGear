@@ -4,9 +4,10 @@ import Login from "../../components/Auth/Login";
 import { IoArrowBack } from "react-icons/io5";
 import { useState } from "react";
 import Register from "../../components/Auth/Register";
+import { useAuth } from "../../components/context/AuthContext";
 
 export default function AuthPage() {
-  const [switchLog, setSwitchLog] = useState(true);
+  const { switchLog, setSwitchLog } = useAuth();
   const activeSwitchLog = () => {
     setSwitchLog(!switchLog);
   };

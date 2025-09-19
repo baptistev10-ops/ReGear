@@ -1,32 +1,23 @@
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
+import { motion } from "motion/react"; // Motion One
+
 import Categories from "./components/Categories";
+import Photos from "./components/Photos";
 import ProgressBar from "./components/ProgressBar";
 import StepsBar from "./components/StepsBar";
 import BlackButton from "../../components/Common/BlackButton";
-import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import useStep from "../../components/context/StepContext";
-import Photos from "./components/Photos";
 
 export default function Publish() {
   const { category, addCategory, selectedCategory, setSelectedCategory } =
     useStep();
-  console.log(category.choice);
+
   const next = () => {
     if (category.choice) {
       addCategory();
       console.log("ok!");
     } else {
       console.error("ça marche pas !");
-    }
-  };
-
-  const renderStep = () => {
-    switch (selectedCategory) {
-      case 0:
-        return <Categories />;
-      case 1:
-        return <Photos />;
-      default:
-        <Categories />;
     }
   };
 
@@ -37,12 +28,32 @@ export default function Publish() {
       console.log("Non non non !");
     }
   };
-  console.log(selectedCategory);
+
+  const renderStep = () => {
+    switch (selectedCategory) {
+      case 0:
+        return <Categories key="cat" />;
+      case 1:
+        return <Photos key="photos" />;
+      default:
+        return <Categories key="cat" />;
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <ProgressBar />
       <StepsBar />
-      {renderStep()}
+
+      <motion.div
+        key={selectedCategory}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {renderStep()}
+      </motion.div>
+
       <div className="flex justify-between">
         <button
           onClick={back}
@@ -51,6 +62,7 @@ export default function Publish() {
           <IoArrowBack className="text-sm mr-3" />
           Précédent
         </button>
+
         <BlackButton
           onClick={next}
           disabled={!category.choice}

@@ -5,6 +5,7 @@ const StepContext = createContext();
 export function StepProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [category, setCategory] = useState({});
+  const [article, setArticle] = useState({});
   const addCategory = () => {
     if (selectedCategory < 5) {
       setSelectedCategory(selectedCategory + 1);

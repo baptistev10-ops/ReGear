@@ -8,6 +8,7 @@ import {
   getUsers,
   deleteUsers,
   detailsUser,
+  googleAuth,
 } from "../controllers/user.controller.js";
 
 const router = express.Router();
@@ -15,6 +16,8 @@ const router = express.Router();
 router.post("/", register);
 
 router.post("/login", login);
+
+router.post("/auth-google", googleAuth);
 
 router.get("/verifyMail/:token", verifyMail);
 
