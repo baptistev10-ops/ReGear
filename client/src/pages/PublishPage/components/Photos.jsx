@@ -33,6 +33,30 @@ export default function Photos() {
           ))}
         </div>
       </div>
+      <div
+        className="border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer hover:border-blue-400 hover:bg-blue-50 border-blue-500 bg-blue-50"
+        style={{ opacity: 1 }}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <div>
+            <p className="text-lg font-medium text-gray-700">
+              Glissez votre image ici
+            </p>
+            <p className="text-sm text-gray-500 mt-1">
+              ou cliquez pour parcourir vos fichiers
+            </p>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-gray-400 mt-2">
+            <span>PNG, JPG, JPEG jusqu'à 5MB</span>
+          </div>
+        </div>
+        <input
+          id="file-input"
+          type="file"
+          accept="image/*"
+          className="hidden"
+        />
+      </div>
     </div>
   );
 }
