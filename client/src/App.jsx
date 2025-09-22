@@ -7,7 +7,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const clientId = import.meta.env.VITE_GOOGLE_AUTH;
-  console.log(clientId);
   return (
     <div className="h-screen flex flex-col items-center">
       <GoogleOAuthProvider clientId={clientId}>

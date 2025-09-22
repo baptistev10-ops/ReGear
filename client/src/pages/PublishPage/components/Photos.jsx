@@ -2,11 +2,19 @@ import { LuCamera } from "react-icons/lu";
 import { LuLightbulb } from "react-icons/lu";
 import { photosconseils } from "../../../utils/photoconseils.data";
 import useStep from "../../../components/context/StepContext";
+import { useState } from "react";
 
 export default function Photos() {
-  const { category } = useStep();
+  const { category, files, setFiles } = useStep();
+
+  const handleFileChange = (e) => {
+    const selectFile = e.target.file;
+    setFiles(selectFile);
+  };
+
+  console.log(setFiles);
   return (
-    <div className="border rounded-lg p-4 w-[80vh]">
+    <div className="border rounded-lg p-4 w-[80vh] flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <LuCamera />
         <p>Ajoutez des photos de votre {category.choice}</p>
@@ -33,29 +41,18 @@ export default function Photos() {
           ))}
         </div>
       </div>
-      <div
-        className="border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer hover:border-blue-400 hover:bg-blue-50 border-blue-500 bg-blue-50"
-        style={{ opacity: 1 }}
-      >
-        <div className="flex flex-col items-center gap-3">
+      <div>
+        <input type="file" multiple className="" onClick={handleFileChange} />
+
+        {setFiles.length > 0 && (
           <div>
-            <p className="text-lg font-medium text-gray-700">
-              Glissez votre image ici
-            </p>
-            <p className="text-sm text-gray-500 mt-1">
-              ou cliquez pour parcourir vos fichiers
-            </p>
+            {files.map((file, index) => (
+              <div key={index}>
+                <img src={URL.createObjectURL(file)} alt={file.name} />
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-2 text-xs text-gray-400 mt-2">
-            <span>PNG, JPG, JPEG jusqu'à 5MB</span>
-          </div>
-        </div>
-        <input
-          id="file-input"
-          type="file"
-          accept="image/*"
-          className="hidden"
-        />
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,8 @@ export function StepProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [category, setCategory] = useState({});
   const [article, setArticle] = useState({});
+  const [files, setFiles] = useState([]);
+
   const addCategory = () => {
     if (selectedCategory < 5) {
       setSelectedCategory(selectedCategory + 1);
@@ -14,11 +16,6 @@ export function StepProvider({ children }) {
 
   const addData = (data) => {
     setCategory({ ...category, choice: data });
-  };
-
-  const handleClick = (id, label) => {
-    addData(label);
-    setCat(id);
   };
 
   return (
@@ -30,7 +27,8 @@ export function StepProvider({ children }) {
         setCategory,
         addCategory,
         addData,
-        handleClick,
+        files,
+        setFiles,
       }}
     >
       {children}

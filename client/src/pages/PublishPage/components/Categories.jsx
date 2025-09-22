@@ -4,8 +4,11 @@ import useStep from "../../../components/context/StepContext";
 import { categories } from "../../../utils/categories.data";
 
 export default function Categories() {
+  const { addData, category } = useStep();
   const [cat, setCat] = useState(0);
-  const { addData, category, setCategory } = useStep();
+
+  console.log(category.choice);
+
   const handleClick = (id, label) => {
     addData(label);
     setCat(id);
