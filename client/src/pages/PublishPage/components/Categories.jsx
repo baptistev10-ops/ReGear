@@ -1,18 +1,14 @@
-import { useState } from "react";
 import logosmall from "../../../assets/images/Bap_Favicon.png";
 import useStep from "../../../components/context/StepContext";
 import { categories } from "../../../utils/categories.data";
 
 export default function Categories() {
-  const { addData, category } = useStep();
-  const [cat, setCat] = useState(0);
+  const { formData, updateFormData } = useStep();
 
-  console.log(category.choice);
-
-  const handleClick = (id, label) => {
-    addData(label);
-    setCat(id);
+  const handleClick = (label) => {
+    updateFormData("category", label);
   };
+
   return (
     <div className="border rounded-lg p-4">
       <div className="flex gap-2 items-center">
@@ -24,16 +20,16 @@ export default function Categories() {
           <button
             key={categorie.id}
             className={`flex flex-col items-center rounded-lg p-5 justify-center gap-1 w-[254px] hover:shadow-lg transition duration-200 ${
-              category.choice === categorie.label
+              formData.category === categorie.label
                 ? "border-[2px] animate-pulse border-black"
                 : "border"
             }`}
-            onClick={() => handleClick(categorie.id, categorie.label)}
+            onClick={() => handleClick(categorie.label)}
           >
             <h2 className="text-2xl">{categorie.logo}</h2>
             <h3>{categorie.label}</h3>
             <p className="text-gray-500 text-sm">{categorie.desc}</p>
-            <p className="text-gray-500 text-sm ">{categorie.price}</p>
+            <p className="text-gray-500 text-sm">{categorie.price}</p>
           </button>
         ))}
       </div>

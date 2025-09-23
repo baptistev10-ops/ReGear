@@ -4,8 +4,15 @@ import useStep from "../../../components/context/StepContext";
 
 export default function ProgressBar() {
   const { selectedCategory } = useStep();
+  const totalSteps = 5; // étapes visibles
+  const maxProgressBeforeFinal = 80; // % max avant étape finale
+
+  const progressPercentage =
+    (selectedCategory / (totalSteps - 1)) * maxProgressBeforeFinal;
+
   return (
     <div className="flex mt-5 gap-4">
+      {/* Bouton retour */}
       <div className="flex items-center">
         <NavLink
           className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4"
@@ -15,13 +22,14 @@ export default function ProgressBar() {
           <span className="text-sm">Retour</span>
         </NavLink>
       </div>
+
+      {/* Barre de progression */}
       <div className="flex flex-col gap-2 mb-4 w-full">
         <h2 className="font-semibold text-xl">Publier une annonce</h2>
         <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className={`bg-black h-full rounded-full transition-all duration-1000  ${
-              selectedCategory ? "w-[25%]" : "w-0"
-            }`}
+            className="bg-black h-full rounded-full transition-all duration-1000"
+            style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
       </div>

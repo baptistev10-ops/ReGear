@@ -1,5 +1,5 @@
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
-import { motion } from "motion/react"; // Motion One
+import { motion } from "motion/react";
 
 import Categories from "./components/Categories";
 import Photos from "./components/Photos";
@@ -9,23 +9,35 @@ import BlackButton from "../../components/Common/BlackButton";
 import useStep from "../../components/context/StepContext";
 
 export default function Publish() {
-  const { category, addCategory, selectedCategory, setSelectedCategory } =
+  const { formData, addCategory, selectedCategory, setSelectedCategory } =
     useStep();
-
-  const next = () => {
-    if (category.choice) {
-      addCategory();
-      console.log("ok!");
-    } else {
-      console.error("ça marche pas !");
-    }
-  };
 
   const back = () => {
     if (selectedCategory > 0) {
       setSelectedCategory(selectedCategory - 1);
+    }
+  };
+
+  const next = () => {
+    // On ne passe à l'étape suivante que si valid
+    if (isStepValid()) {
+      addCategory();
     } else {
-      console.log("Non non non !");
+      console.error("Conditions non remplies !");
+    }
+  };
+
+  // ✅ Vérification selon l’étape
+  const isStepValid = () => {
+    switch (selectedCategory) {
+      case 0: // Étape catégorie
+        return !!formData.category;
+      case 1: // Étape photos
+        return formData.files.length >= 3 && formData.files.length <= 8;
+      // case 2: exemple article
+      //   return formData.article.title?.length > 0;
+      default:
+        return true;
     }
   };
 
@@ -65,9 +77,9 @@ export default function Publish() {
 
         <BlackButton
           onClick={next}
-          disabled={!category.choice}
+          disabled={!isStepValid()}
           className={`flex items-center ${
-            category.choice
+            isStepValid()
               ? "cursor-pointer"
               : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
           }`}

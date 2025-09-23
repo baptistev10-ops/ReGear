@@ -4,9 +4,15 @@ const StepContext = createContext();
 
 export function StepProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
-  const [category, setCategory] = useState({});
-  const [article, setArticle] = useState({});
-  const [files, setFiles] = useState([]);
+
+  // state global
+  const [formData, setFormData] = useState({
+    category: null,
+    article: {},
+    files: [],
+  });
+
+  console.log(formData);
 
   const addCategory = () => {
     if (selectedCategory < 5) {
@@ -14,8 +20,11 @@ export function StepProvider({ children }) {
     }
   };
 
-  const addData = (data) => {
-    setCategory({ ...category, choice: data });
+  const updateFormData = (key, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
   return (
@@ -23,12 +32,9 @@ export function StepProvider({ children }) {
       value={{
         selectedCategory,
         setSelectedCategory,
-        category,
-        setCategory,
         addCategory,
-        addData,
-        files,
-        setFiles,
+        formData,
+        updateFormData,
       }}
     >
       {children}
