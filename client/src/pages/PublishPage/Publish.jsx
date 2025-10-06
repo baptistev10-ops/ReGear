@@ -7,6 +7,7 @@ import ProgressBar from "./components/ProgressBar";
 import StepsBar from "./components/StepsBar";
 import BlackButton from "../../components/Common/BlackButton";
 import useStep from "../../components/context/StepContext";
+import Desc from "./components/Desc";
 
 export default function Publish() {
   const { formData, addCategory, selectedCategory, setSelectedCategory } =
@@ -47,6 +48,8 @@ export default function Publish() {
         return <Categories key="cat" />;
       case 1:
         return <Photos key="photos" />;
+      case 2:
+        return <Desc key="desc" />;
       default:
         return <Categories key="cat" />;
     }

@@ -10,6 +10,12 @@ export function StepProvider({ children }) {
     category: null,
     article: {},
     files: [],
+    desc: {
+      marque: "",
+      model: "",
+      title: "",
+      description: "",
+    },
   });
 
   console.log(formData);
