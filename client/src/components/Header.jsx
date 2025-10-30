@@ -70,7 +70,10 @@ export default function Header() {
       )}
 
       <div className="w-[25vw] mr-10">
-        <BlackButton onClick={() => Navigate("/publish")}>
+        <BlackButton
+          className="bg-gray-950 text-white"
+          onClick={() => Navigate("/publish")}
+        >
           + Publier une annonce
         </BlackButton>
       </div>

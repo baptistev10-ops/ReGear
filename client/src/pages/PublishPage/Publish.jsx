@@ -9,7 +9,6 @@ import BlackButton from "../../components/Common/BlackButton";
 import useStep from "../../components/context/StepContext";
 import Desc from "./components/Desc";
 import Price from "./components/Price";
-import Final from "./components/Localisation";
 import LocalisationEtLivraison from "./components/Localisation";
 import { uploadImage } from "../../lib/uploadService";
 import { createBlog } from "../../api/blog.api";
@@ -118,7 +117,7 @@ export default function Publish() {
           <BlackButton
             onClick={submitForm}
             disabled={!isStepValid()}
-            className={`flex items-center ${
+            className={`flex items-center text-white bg-gray-950 ${
               isStepValid()
                 ? "cursor-pointer"
                 : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
@@ -130,7 +129,7 @@ export default function Publish() {
           <BlackButton
             onClick={next}
             disabled={!isStepValid()}
-            className={`flex items-center ${
+            className={`flex items-center text-white bg-gray-950 ${
               isStepValid()
                 ? "cursor-pointer"
                 : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"

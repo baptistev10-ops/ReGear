@@ -6,6 +6,7 @@ import { useState } from "react";
 import Header from "../../components/Header";
 import BlogCard from "../Blogs/BlogCard";
 import { useBlog } from "../../components/context/BlogContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   const [filter, setFilter] = useState(false);
@@ -13,6 +14,7 @@ export default function Homepage() {
     setFilter(!filter);
   };
   const { blogs } = useBlog();
+
   return (
     <>
       <Header />

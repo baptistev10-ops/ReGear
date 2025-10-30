@@ -2,7 +2,10 @@ import Blog from "../models/blog.schema.js";
 
 export const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
+    const blogs = await Blog.find()
+      .populate("author", "username")
+      .sort({ createdAt: -1 });
+    console.log(blogs);
     res.status(200).json(blogs);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -10,7 +13,6 @@ export const getAllBlogs = async (req, res) => {
 };
 
 export const publishAd = async (req, res) => {
-  console.log(req);
   try {
     const {
       category,
@@ -29,7 +31,7 @@ export const publishAd = async (req, res) => {
     const blog = await Blog.create({
       category,
       image,
-      author: req.user._id, // récupéré via middleware
+      author: req.user._id,
       title,
       marque,
       modele,
@@ -41,10 +43,20 @@ export const publishAd = async (req, res) => {
       etat,
       anneeAchat,
     });
-
+    console.log("test");
     res.status(201).json(blog);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });
+  }
+};
+
+export const getBlogById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const blog = await Blog.findById(id).populate("author", "username");
+    return res.status(200).json(blog);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
   }
 };

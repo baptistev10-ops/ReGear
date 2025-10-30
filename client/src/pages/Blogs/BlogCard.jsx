@@ -1,8 +1,13 @@
 import { FaStar, FaMapMarkerAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogCard({ blog }) {
+  const navigate = useNavigate();
   return (
-    <div className="group bg-white rounded-xl shadow hover:shadow-xl transition p-0 overflow-hidden cursor-pointer border">
+    <div
+      onClick={() => navigate(`/blog/${blog._id}`)}
+      className="group bg-white rounded-xl shadow hover:shadow-xl transition p-0 overflow-hidden cursor-pointer border"
+    >
       <div className="relative w-full h-56 overflow-hidden z-0">
         <img
           src={blog.image?.[0]}
@@ -35,7 +40,7 @@ export default function BlogCard({ blog }) {
 
         <div className="flex items-center justify-between text-sm text-gray-500">
           <div className="flex items-center">
-            <span className="font-medium"></span>
+            <span className="font-medium">{blog.author.username}</span>
           </div>
 
           <div className="flex items-center gap-1 text-yellow-500">

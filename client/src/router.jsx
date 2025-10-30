@@ -9,6 +9,7 @@ import { rootLoader } from "./loaders/rootLoaders";
 import Publish from "./pages/PublishPage/Publish";
 import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
 import UserConnected from "./components/ProtectedRoutes/UserConnected";
+import BlogDetails from "./pages/Blogs/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ export const router = createBrowserRouter([
         element: (
           <UserConnected>
             <Publish />
+          </UserConnected>
+        ),
+      },
+      {
+        path: "/blog/:id",
+        element: (
+          <UserConnected>
+            <BlogDetails />
           </UserConnected>
         ),
       },

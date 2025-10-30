@@ -30,3 +30,14 @@ export async function getBlogs() {
     console.error(error);
   }
 }
+
+export async function getBlogById(blogId) {
+  try {
+    const response = await fetch(`${BASE_URL}/blog/blog/${blogId}`, {
+      credentials: "include",
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -10,12 +10,13 @@ export function BlogProvider({ children }) {
   const [blogs, setBlogs] = useState([]);
   const { userConnected } = useAuth();
 
+  console.log(blogs);
+
   const addBlogs = async (values) => {
     console.log({ values });
 
     try {
-      const newBlog = await createBlog(values);
-      setBlogs((prev) => [newBlog, ...prev]);
+      setBlogs((prev) => [values, ...prev]);
     } catch (error) {
       console.log(error);
     }
