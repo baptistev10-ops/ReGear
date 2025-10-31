@@ -14,7 +14,7 @@ export default function Price() {
   };
 
   return (
-    <form className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-2xl shadow-md">
+    <form className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-2xl">
       {/* ---- SECTION PRIX DE VENTE ---- */}
       <div className="flex-1 border border-gray-200 rounded-xl p-5">
         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">

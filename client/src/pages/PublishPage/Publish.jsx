@@ -1,6 +1,6 @@
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import { motion } from "motion/react";
-
+import { ImSpinner8 } from "react-icons/im";
 import Categories from "./components/Categories";
 import Photos from "./components/Photos";
 import ProgressBar from "./components/ProgressBar";
@@ -14,6 +14,7 @@ import { uploadImage } from "../../lib/uploadService";
 import { createBlog } from "../../api/blog.api";
 import { useNavigate } from "react-router-dom";
 import { useBlog } from "../../components/context/BlogContext";
+import { useState } from "react";
 
 export default function Publish() {
   const {
@@ -25,7 +26,8 @@ export default function Publish() {
     resetForm,
   } = useStep();
 
-  const { addBlogs } = useBlog();
+  const { addBlogs, blogs } = useBlog();
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,6 +42,7 @@ export default function Publish() {
   };
 
   const submitForm = async () => {
+    setLoading(true);
     const urlStorage = [];
 
     for (let i = 0; i < formData.files.length; i++) {
@@ -70,6 +73,8 @@ export default function Publish() {
       resetForm();
     } catch (error) {
       console.error("Erreur lors de la création ❌:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -91,53 +96,67 @@ export default function Publish() {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-[100%]">
-      <ProgressBar />
-      <StepsBar />
+    <div className="flex flex-col w-screen min-h-screen overflow-x-hidden bg-white">
+      {/* Conteneur commun à tout le contenu */}
+      <div className="w-full max-w-[880px] mx-auto flex flex-col gap-4 px-4 sm:px-6 flex-1">
+        {/* Progress + Steps */}
+        <div className="flex flex-col gap-2 w-full">
+          <ProgressBar />
+          <StepsBar />
+        </div>
 
-      <motion.div
-        key={selectedCategory}
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {renderStep()}
-      </motion.div>
-
-      <div className="flex justify-between">
-        <button
-          onClick={back}
-          className="flex items-center text-black py-2 px-4 rounded-lg border"
-        >
-          <IoArrowBack className="text-sm mr-3" />
-          Précédent
-        </button>
-
-        {selectedCategory === 4 ? (
-          <BlackButton
-            onClick={submitForm}
-            disabled={!isStepValid()}
-            className={`flex items-center text-white bg-gray-950 ${
-              isStepValid()
-                ? "cursor-pointer"
-                : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
-            }`}
+        {/* Contenu central scrollable sur mobile */}
+        <div className="flex-1 lg:overflow-visible overflow-y-auto max-h-[75vh] sm:max-h-[80vh] pb-4">
+          <motion.div
+            key={selectedCategory}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="w-full"
           >
-            Publier mon annonce
-          </BlackButton>
-        ) : (
-          <BlackButton
-            onClick={next}
-            disabled={!isStepValid()}
-            className={`flex items-center text-white bg-gray-950 ${
-              isStepValid()
-                ? "cursor-pointer"
-                : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
-            }`}
+            {renderStep()}
+          </motion.div>
+        </div>
+
+        {/* Boutons d’action */}
+        <div className="flex justify-between items-center sticky bottom-0 bg-white py-3 sm:py-4 w-full z-20">
+          <button
+            onClick={back}
+            className="flex items-center text-black py-2 px-4 rounded-lg border"
           >
-            Suivant <IoArrowForward className="text-sm ml-3" />
-          </BlackButton>
-        )}
+            <IoArrowBack className="text-sm mr-3" />
+            Précédent
+          </button>
+
+          {selectedCategory === 4 ? (
+            <BlackButton
+              onClick={submitForm}
+              disabled={!isStepValid()}
+              className={`flex items-center text-white bg-gray-950 ${
+                isStepValid()
+                  ? "cursor-pointer"
+                  : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+              }`}
+            >
+              {loading && (
+                <ImSpinner8 className="transition-all animate-spin mr-2" />
+              )}{" "}
+              Publier mon annonce
+            </BlackButton>
+          ) : (
+            <BlackButton
+              onClick={next}
+              disabled={!isStepValid()}
+              className={`flex items-center text-white bg-gray-950 ${
+                isStepValid()
+                  ? "cursor-pointer"
+                  : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+              }`}
+            >
+              Suivant <IoArrowForward className="text-sm ml-3" />
+            </BlackButton>
+          )}
+        </div>
       </div>
     </div>
   );

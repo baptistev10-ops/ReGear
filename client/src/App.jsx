@@ -14,7 +14,7 @@ function App() {
         <AuthProvider>
           <BlogProvider>
             <StepProvider>
-              <main className="flex flex-col items-center lg:w-[80vw]">
+              <main className="flex flex-col items-center">
                 <Outlet />
               </main>
             </StepProvider>

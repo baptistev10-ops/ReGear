@@ -11,11 +11,11 @@ export default function ProgressBar() {
     (selectedCategory / (totalSteps - 1)) * maxProgressBeforeFinal;
 
   return (
-    <div className="flex mt-5 gap-4">
+    <div className="flex flex-col sm:flex-row mt-5 gap-4 sm:items-start sm:justify-start w-full">
       {/* Bouton retour */}
       <div className="flex items-center">
         <NavLink
-          className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4"
+          className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-2 sm:mb-0"
           to="/"
           onClick={resetForm}
         >
@@ -25,11 +25,13 @@ export default function ProgressBar() {
       </div>
 
       {/* Barre de progression */}
-      <div className="flex flex-col gap-2 mb-4 w-full">
-        <h2 className="font-semibold text-xl">Publier une annonce</h2>
-        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div className="flex flex-col gap-2 w-full">
+        <h2 className="font-semibold text-lg sm:text-xl text-left">
+          Publier une annonce
+        </h2>
+        <div className="w-full h-[6px] sm:h-[8px] bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="bg-black h-full rounded-full transition-all duration-1000"
+            className="bg-black h-full rounded-full transition-all duration-700 ease-in-out"
             style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>

@@ -33,7 +33,7 @@ export default function LocalisationEtLivraison() {
   };
 
   return (
-    <form className="flex flex-col gap-6 bg-white p-6 rounded-2xl shadow-md">
+    <form className="flex flex-col gap-6 bg-white p-6 rounded-2xl w-full max-w-[880px] mx-auto">
       {/* --- LOCALISATION ET LIVRAISON --- */}
       <div className="border border-gray-200 rounded-xl p-5">
         {/* Titre */}
@@ -99,28 +99,35 @@ export default function LocalisationEtLivraison() {
       <div className="border border-gray-200 rounded-xl p-5">
         <h2 className="text-lg font-semibold mb-4">Aperçu de votre annonce</h2>
 
-        <div className="flex items-start gap-4">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-4 rounded-xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-all duration-300">
           {/* Image du produit */}
-          <img
-            src={URL.createObjectURL(formData.files[0])}
-            alt="Image du produit"
-            className="w-16 h-16 object-cover rounded-md border"
-          />
+          <div className="relative shrink-0 w-32 h-32 sm:w-24 sm:h-24 rounded-lg overflow-hidden border">
+            <img
+              src={URL.createObjectURL(formData.files[0])}
+              alt="Image du produit"
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <span className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-[2px] rounded-md">
+              {formData.category}
+            </span>
+          </div>
 
           {/* Contenu annonce */}
-          <div className="flex flex-col flex-1">
-            <h3 className="font-medium text-gray-800">
-              {formData.desc.marque} {formData.desc.modele} -{" "}
-              {formData.category}
+          <div className="flex flex-col w-full text-center sm:text-left">
+            <h3 className="font-semibold text-gray-800 text-base sm:text-lg leading-tight">
+              {formData.desc.marque} {formData.desc.modele}
             </h3>
-            <p className="text-sm text-gray-500">{formData.desc.desc}</p>
+
+            <p className="text-sm text-gray-500 line-clamp-2 mt-1">
+              {formData.desc.desc}
+            </p>
 
             {/* Prix + État */}
-            <div className="flex items-center gap-3 mt-2">
-              <span className="font-semibold text-gray-800">
+            <div className="flex justify-center sm:justify-start items-center gap-3 mt-3">
+              <span className="font-semibold text-gray-800 text-lg">
                 {formData.prixVente} €
               </span>
-              <span className="text-sm px-2 py-1 rounded-full bg-gray-100 border text-gray-700">
+              <span className="text-xs px-2 py-[3px] rounded-full bg-gray-100 border text-gray-700">
                 {formData.etat}
               </span>
             </div>
