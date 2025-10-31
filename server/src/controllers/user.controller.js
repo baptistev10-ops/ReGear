@@ -48,37 +48,43 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const { data, password } = req.body;
+  console.log(req.body);
 
   let user;
+
   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
   if (emailRegex.test(data)) {
     user = await User.findOne({ email: data });
   } else {
     user = await User.findOne({ username: data });
   }
 
-  if (!user)
+  if (!user) {
     return res
       .status(400)
       .json({ message: "Email ou nom d'utilisateur incorrect" });
+  }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
-  if (!isPasswordValid)
+  if (!isPasswordValid) {
     return res.status(400).json({ message: "Mot de passe incorrect" });
+  }
 
   const token = jwt.sign({}, process.env.SECRET_KEY, {
     subject: user._id.toString(),
     expiresIn: "7d",
+    algorithm: "HS256",
   });
 
-  // ✅ Important : NODE_ENV, pas MODE
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // HTTPS seulement en prod
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Safari compatible
+    secure: process.env.MODE === "development" ? false : true,
+    sameSite: process.env.MODE === "development" ? "Lax" : "None",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
+  // Si tout est bon
   res.status(200).json({ user, message: "Connexion réussie" });
 };
 
@@ -155,8 +161,8 @@ export const currentUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    secure: process.env.MODE === "development" ? false : true,
+    sameSite: process.env.MODE === "development" ? "Lax" : "None",
   });
   res.status(200).json({ message: "Déconnexion réussie" });
 };
