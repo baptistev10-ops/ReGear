@@ -13,6 +13,7 @@ export default function BlogDetails() {
   const blog = blogs.find((value) => value._id === id);
   const [blogData, setBlogData] = useState(blog);
   const [imageSelect, setImageSelect] = useState(blogData.image[0]);
+  const [visualize, setVisualize] = useState(false);
 
   useEffect(() => {
     if (!blog) {
@@ -46,12 +47,34 @@ export default function BlogDetails() {
         </div>
         <div className="w-full h-[350px] bg-gray-200 rounded-xl overflow-hidden">
           <img
+            onClick={() => setVisualize(true)}
             src={imageSelect}
-            alt={`Image principale de ${blogData.desc?.title}`}
+            alt={`Image principale de ${blogData.title}`}
             title={blogData.desc?.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover cursor-pointer"
           />
         </div>
+        {visualize && (
+          <div
+            onClick={() => setVisualize(false)}
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          >
+            <div onClick={(e) => e.stopPropagation()} className="relative">
+              <img
+                src={imageSelect}
+                alt={blogData.desc?.title}
+                title={blogData.desc?.title}
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg hover:scale-150"
+              />
+              <button
+                onClick={() => setVisualize(false)}
+                className="absolute top-3 right-3 text-white text-3xl font-bold hover:text-gray-300"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-3 mt-3">
           {blogData.image?.slice(0, 3).map((img, index) => (
