@@ -13,7 +13,7 @@ export default function AuthPage() {
   };
   return (
     <div className="bg-blue-50 h-screen w-screen flex justify-center items-center gap-24">
-      <div className="flex flex-col gap-5">
+      <div className="flex-col gap-5 hidden lg:flex">
         <div>
           <h1 className="font-roboto font-normal text-2xl text-center">
             Rejoignez ReGear
