@@ -16,6 +16,8 @@ const PORT = process.env.PORT;
 // indique que notre application utilise express
 const app = express();
 
+app.set("trust proxy", 1);
+
 // indique que l'on va pouvoir traduire le JSON et que l'on va utiliser des cookies
 app.use(express.json());
 app.use(cookieParser());
