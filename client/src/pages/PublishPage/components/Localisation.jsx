@@ -34,15 +34,12 @@ export default function LocalisationEtLivraison() {
 
   return (
     <form className="flex flex-col gap-6 bg-white p-6 rounded-2xl w-full max-w-[880px] mx-auto">
-      {/* --- LOCALISATION ET LIVRAISON --- */}
       <div className="border border-gray-200 rounded-xl p-5">
-        {/* Titre */}
         <div className="flex items-center gap-2 mb-4">
           <MdOutlineLocationOn className="text-xl text-gray-700" />
           <h2 className="text-lg font-semibold">Localisation et livraison</h2>
         </div>
 
-        {/* Localisation */}
         <div className="mb-4">
           <label
             htmlFor="localisation"
@@ -62,7 +59,6 @@ export default function LocalisationEtLivraison() {
           <p className="text-red-500">{errors.ville?.message}</p>
         </div>
 
-        {/* Options de livraison */}
         <div>
           <label className="block text-sm text-gray-600 mb-2">
             Options de livraison <span className="text-red-500">*</span>
@@ -95,12 +91,10 @@ export default function LocalisationEtLivraison() {
         </div>
       </div>
 
-      {/* --- APERÇU DE L’ANNONCE --- */}
       <div className="border border-gray-200 rounded-xl p-5">
         <h2 className="text-lg font-semibold mb-4">Aperçu de votre annonce</h2>
 
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-4 rounded-xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white shadow-sm hover:shadow-md transition-all duration-300">
-          {/* Image du produit */}
           <div className="relative shrink-0 w-32 h-32 sm:w-24 sm:h-24 rounded-lg overflow-hidden border">
             <img
               src={URL.createObjectURL(formData.files[0])}
@@ -112,17 +106,15 @@ export default function LocalisationEtLivraison() {
             </span>
           </div>
 
-          {/* Contenu annonce */}
-          <div className="flex flex-col w-full text-center sm:text-left">
-            <h3 className="font-semibold text-gray-800 text-base sm:text-lg leading-tight">
+          <div className="flex flex-col w-full text-center sm:text-left overflow-hidden">
+            <h3 className="font-semibold text-gray-800 text-base sm:text-lg leading-tight truncate">
               {formData.desc.marque} {formData.desc.modele}
             </h3>
 
-            <p className="text-sm text-gray-500 line-clamp-2 mt-1">
+            <p className="text-sm text-gray-500 mt-1 max-h-[4.2rem] overflow-hidden text-ellipsis break-words truncate">
               {formData.desc.desc}
             </p>
 
-            {/* Prix + État */}
             <div className="flex justify-center sm:justify-start items-center gap-3 mt-3">
               <span className="font-semibold text-gray-800 text-lg">
                 {formData.prixVente} €

@@ -8,7 +8,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider
       router={router}
-      // ⚙️ >>> AJOUTE CETTE LIGNE POUR FIX IOS + WARNING
       future={{ v7_startTransition: true }}
       hydrationFallbackElement={
         <div className="h-screen w-screen flex flex-col items-center justify-center text-gray-600 bg-white">

@@ -119,12 +119,12 @@ export default function Publish() {
         </div>
 
         {/* Boutons d’action */}
-        <div className="flex justify-between items-center sticky bottom-0 bg-white py-3 sm:py-4 w-full z-20">
+        <div className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-between items-center px-4 py-3 sm:px-6 sm:py-4 z-50">
           <button
             onClick={back}
-            className="flex items-center text-black py-2 px-4 rounded-lg border"
+            className="flex items-center text-black py-2 px-4 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
           >
-            <IoArrowBack className="text-sm mr-3" />
+            <IoArrowBack className="text-sm mr-2" />
             Précédent
           </button>
 
@@ -132,28 +132,26 @@ export default function Publish() {
             <BlackButton
               onClick={submitForm}
               disabled={!isStepValid()}
-              className={`flex items-center text-white bg-gray-950 ${
+              className={`flex items-center gap-2 text-white bg-gray-950 px-5 py-2 rounded-lg transition ${
                 isStepValid()
-                  ? "cursor-pointer"
-                  : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+                  ? "cursor-pointer hover:bg-gray-800"
+                  : "cursor-not-allowed opacity-60"
               }`}
             >
-              {loading && (
-                <ImSpinner8 className="transition-all animate-spin mr-2" />
-              )}{" "}
               Publier mon annonce
             </BlackButton>
           ) : (
             <BlackButton
               onClick={next}
               disabled={!isStepValid()}
-              className={`flex items-center text-white bg-gray-950 ${
+              className={`flex items-center gap-2 text-white bg-gray-950 px-5 py-2 rounded-lg transition ${
                 isStepValid()
-                  ? "cursor-pointer"
-                  : "cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+                  ? "cursor-pointer hover:bg-gray-800"
+                  : "cursor-not-allowed opacity-60"
               }`}
             >
-              Suivant <IoArrowForward className="text-sm ml-3" />
+              Suivant
+              <IoArrowForward className="text-sm ml-2" />
             </BlackButton>
           )}
         </div>

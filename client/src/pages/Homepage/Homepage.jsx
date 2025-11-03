@@ -36,14 +36,14 @@ export default function Homepage() {
         </span>
         {filter && <Filter />}
       </div>
-      <div className="w-full mt-11">
+      <div className="w-full mt-11 lg:px-5">
         <h3 className="text-left text-sm mb-6">Catégories populaires</h3>
         <hr className="border-gray-300 my-4 border-1 w-full" />
       </div>
-      <div className="w-full mt-4">
+      <div className="w-full mt-4 lg:px-5">
         <h4 className="text-left text-sm mb-6">Dernières annonces</h4>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:px-5">
         {blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
