@@ -51,10 +51,7 @@ export default function AuthPage() {
             <IoArrowBack className="text-sm" />
             <span className="text-sm">Retour</span>
           </NavLink>
-          <Login
-            activeSwitchLog={activeSwitchLog}
-            setSwitchLog={setSwitchLog}
-          />
+          <Login activeSwitchLog={activeSwitchLog} />
         </div>
       ) : (
         <div className="mb-16">
@@ -65,10 +62,7 @@ export default function AuthPage() {
             <IoArrowBack className="text-sm" />
             <span className="text-sm">Retour</span>
           </NavLink>
-          <Register
-            activeSwitchLog={activeSwitchLog}
-            setSwitchLog={setSwitchLog}
-          />
+          <Register activeSwitchLog={activeSwitchLog} />
         </div>
       )}
     </div>

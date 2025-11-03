@@ -16,7 +16,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "../context/AuthContext";
 
-export default function Register({ activeSwitchLog, setSwitchLog }) {
+export default function Register({ activeSwitchLog }) {
   const { switchLog, setSwitchLog } = useAuth();
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -84,6 +84,7 @@ export default function Register({ activeSwitchLog, setSwitchLog }) {
         toast.success(responseFromBackend.message);
         navigate("/login");
         reset(defaultValues);
+        setSwitchLog(true);
       } else {
         toast.error(responseFromBackend.message);
       }
@@ -220,7 +221,6 @@ export default function Register({ activeSwitchLog, setSwitchLog }) {
         <button
           type="submit"
           className="bg-gray-950 text-white py-2 px-4 rounded-lg"
-          onClick={setSwitchLog(true)}
         >
           S'inscrire
         </button>
