@@ -131,13 +131,16 @@ export default function Publish() {
           {selectedCategory === 4 ? (
             <BlackButton
               onClick={submitForm}
-              disabled={!isStepValid()}
+              disabled={!isStepValid() || loading}
               className={`flex items-center gap-2 text-white bg-gray-950 px-5 py-2 rounded-lg transition ${
                 isStepValid()
                   ? "cursor-pointer hover:bg-gray-800"
                   : "cursor-not-allowed opacity-60"
               }`}
             >
+              {loading && (
+                <ImSpinner8 className="transition-all animate-spin mr-2" />
+              )}{" "}
               Publier mon annonce
             </BlackButton>
           ) : (
