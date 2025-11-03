@@ -137,20 +137,13 @@ export const verifyMail = async (req, res) => {
 
 export const currentUser = async (req, res) => {
   const { token } = req.cookies;
-  // console.log(token);
-
+  console.log(token);
   if (token) {
     try {
-      // vérifie en décodant le token avec la clé secrète
       const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-
       console.log(decodedToken);
-
-      // Récupère l'utilisateur en se servant de l'ID du token
       const currentUser = await User.findById(decodedToken.sub);
-
       console.log(currentUser);
-
       if (currentUser) {
         res.status(200).json(currentUser);
       } else {
@@ -160,6 +153,7 @@ export const currentUser = async (req, res) => {
       res.status(400).json(null);
     }
   } else {
+    console.log("test current");
     res.status(400).json(null);
   }
 };
