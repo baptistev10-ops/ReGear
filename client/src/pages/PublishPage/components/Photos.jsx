@@ -65,7 +65,7 @@ export default function Photos() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-            {photosconseils.map((conseil, index) => (
+            {photosconseils?.map((conseil, index) => (
               <div key={index} className="flex items-start gap-3">
                 <span className="text-blue-600 text-lg">{conseil.icon}</span>
                 <div>
@@ -156,7 +156,7 @@ export default function Photos() {
         {/* Preview */}
         {formData.files.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-4">
-            {formData.files.map((file, index) => (
+            {formData.files?.map((file, index) => (
               <div
                 key={index}
                 className="relative border rounded-lg overflow-hidden group"

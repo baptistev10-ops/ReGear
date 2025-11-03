@@ -69,7 +69,7 @@ export default function Price() {
         <h2 className="text-lg font-semibold mb-4">État du produit</h2>
 
         <div className="flex flex-col gap-2">
-          {etats.map((etat) => (
+          {etats?.map((etat) => (
             <button
               key={etat.id}
               type="button"

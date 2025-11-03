@@ -44,7 +44,7 @@ export default function Homepage() {
         <h4 className="text-left text-sm mb-6">Dernières annonces</h4>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {blogs.map((blog) => (
+        {blogs?.map((blog) => (
           <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>

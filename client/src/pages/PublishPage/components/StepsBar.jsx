@@ -15,7 +15,7 @@ export default function StepsBar() {
       {/* Step bar visible uniquement sur grand écran */}
       <div className="hidden lg:flex w-full max-w-[880px] mx-auto mb-8 items-center justify-center">
         <div className="flex items-center justify-between w-full">
-          {steps.map((step, index) => (
+          {steps?.map((step, index) => (
             <div
               key={step.number}
               className="flex items-center justify-center flex-1 last:flex-none"
