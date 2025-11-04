@@ -82,7 +82,7 @@ export const register = async (req, res) => {
       message: "Utilisateur enregistré en attente de confirmation email",
     });
   } catch (error) {
-    console.error("Erreur REGISTER", error);
+    console.error("Erreur REGISTER: ", error);
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
