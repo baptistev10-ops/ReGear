@@ -18,18 +18,13 @@ export const register = async (req, res) => {
     const existingUserPseudo = await User.findOne({ username });
     const existingTempUserMail = await TempUser.findOne({ email });
     const existingTempUserPseudo = await TempUser.findOne({ username });
-
     if (existingUserMail || existingUserPseudo) {
       return res.status(400).json({ message: "Déjà inscrit" });
     } else if (existingTempUserMail || existingTempUserPseudo) {
-      return res.status(400).json({ message: "Vérifiez vos email" });
+      return res.status(400).json({ message: "Vérifiez vos emails" });
     }
-
     const token = createTokenEmail(email);
-    await sendConfirmationEmail(email, token);
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const tempUser = new TempUser({
       username,
       email,
@@ -37,12 +32,22 @@ export const register = async (req, res) => {
       token,
     });
     await tempUser.save();
+    console.log("TempUser enregistré en DB", tempUser);
+    try {
+      await sendConfirmationEmail(email, token);
+      console.log("Email envoyé avec SendGrid à:", email);
+    } catch (mailError) {
+      console.error(
+        "Erreur envoi email:",
+        mailError.response?.body || mailError
+      );
+    }
     res.status(200).json({
-      message:
-        "Veuillez confirmer votre inscription en consultant votre boite mail",
+      message: "Utilisateur enregistré en attente de confirmation email",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Erreur REGISTER:", error);
+    res.status(500).json({ message: "Erreur serveur" });
   }
 };
 
@@ -125,7 +130,7 @@ export const verifyMail = async (req, res) => {
     console.log(error);
     if (error.name === "TokenExpiredError") {
       return res.redirect(
-        `$${
+        `${
           process.env.MODE === "development"
             ? process.env.CLIENT_URL
             : process.env.DEPLOY_FRONT_URL
