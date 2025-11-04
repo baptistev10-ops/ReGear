@@ -44,11 +44,11 @@ export const sendConfirmationEmail = async (email, token) => {
     subject: "Confirmation d'inscription",
     html: `<p>Bienvenue sur notre site!
 Cliquez sur le lien suivant pour valider votre inscription :
-<a href=$
-process.env.MODE  "development"
-? process.env.API_URL
-: process.env.DEPLOY_BACK_URL
-}/user/verifyMail/${token}>Confirmer</a></p>`,
+<a href=${
+      process.env.MODE === "development"
+        ? process.env.API_URL
+        : process.env.DEPLOY_BACK_URL
+    }/user/verifyMail/${token}>Confirmer</a></p>`,
   };
 
   try {
