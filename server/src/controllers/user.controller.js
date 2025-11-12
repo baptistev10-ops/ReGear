@@ -144,7 +144,7 @@ export const verifyMail = async (req, res) => {
           process.env.MODE === "development"
             ? process.env.CLIENT_URL
             : process.env.DEPLOY_FRONT_URL
-        }/register?message=error`
+        }/login?message=error`
       );
     }
 
@@ -160,7 +160,7 @@ export const verifyMail = async (req, res) => {
         process.env.MODE === "development"
           ? process.env.CLIENT_URL
           : process.env.DEPLOY_FRONT_URL
-      }/register?message=success`
+      }/login?message=success`
     );
   } catch (error) {
     console.log(error);
@@ -170,7 +170,7 @@ export const verifyMail = async (req, res) => {
           process.env.MODE === "development"
             ? process.env.CLIENT_URL
             : process.env.DEPLOY_FRONT_URL
-        }/register?message=error`
+        }/login?message=error`
       );
     }
   }
