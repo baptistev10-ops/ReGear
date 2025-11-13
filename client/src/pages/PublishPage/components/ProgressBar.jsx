@@ -12,7 +12,6 @@ export default function ProgressBar() {
 
   return (
     <div className="flex flex-col sm:flex-row mt-5 gap-4 sm:items-start sm:justify-start w-full">
-      {/* Bouton retour */}
       <div className="flex items-center">
         <NavLink
           className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-2 sm:mb-0"
@@ -24,7 +23,6 @@ export default function ProgressBar() {
         </NavLink>
       </div>
 
-      {/* Barre de progression */}
       <div className="flex flex-col gap-2 w-full">
         <h2 className="font-semibold text-lg sm:text-xl text-left">
           Publier une annonce

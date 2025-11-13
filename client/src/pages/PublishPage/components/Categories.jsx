@@ -24,15 +24,12 @@ export default function Categories() {
       duration-300
     "
       >
-        {/* Titre et logo */}
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center sm:justify-start text-center sm:text-left px-3 lg:px-0">
           <img className="w-6" src={logosmall} alt="Logo ReGear" />
           <p className="text-sm sm:text-base font-medium text-gray-700">
             Quelle catégorie de composant vendez-vous ?
           </p>
         </div>
-
-        {/* Grille de catégories */}
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 justify-items-center">
           {categories?.map((categorie) => (
             <button

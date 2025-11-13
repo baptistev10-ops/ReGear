@@ -41,3 +41,15 @@ export async function getBlogById(blogId) {
     console.error(error);
   }
 }
+
+export async function getUserBlogCount(userId) {
+  try {
+    const response = await fetch(`${BASE_URL}/blog/user/${userId}/count`, {
+      credentials: "include",
+    });
+
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

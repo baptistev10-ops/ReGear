@@ -40,7 +40,7 @@ export default function BlogCard({ blog }) {
 
         <div className="flex items-center justify-between text-sm text-gray-500">
           <div className="flex items-center">
-            <span className="font-medium">{blog.author.username}</span>
+            <span className="font-medium">{blog.author?.username || null}</span>
           </div>
 
           <div className="flex items-center gap-1 text-yellow-500">

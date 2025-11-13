@@ -12,7 +12,6 @@ export default function StepsBar() {
   const { selectedCategory } = useStep();
   return (
     <>
-      {/* Step bar visible uniquement sur grand écran */}
       <div className="hidden lg:flex w-full max-w-[880px] mx-auto mb-8 items-center justify-center">
         <div className="flex items-center justify-between w-full">
           {steps?.map((step, index) => (
@@ -20,7 +19,6 @@ export default function StepsBar() {
               key={step.number}
               className="flex items-center justify-center flex-1 last:flex-none"
             >
-              {/* Cercle + label */}
               <div className="flex items-center gap-2 shrink-0">
                 <div
                   className={`flex items-center justify-center rounded-full w-8 h-8 text-[13px] font-medium ${
@@ -46,7 +44,6 @@ export default function StepsBar() {
                 </span>
               </div>
 
-              {/* Barre de liaison */}
               {index < steps.length - 1 && (
                 <div className="relative flex-1 mx-4">
                   <div className="h-[2px] bg-gray-300 rounded w-full" />
@@ -62,7 +59,7 @@ export default function StepsBar() {
         </div>
       </div>
 
-      {/* Texte simple pour mobile et tablette */}
+      {/* pour tablette et mobile */}
       <p className="lg:hidden text-sm text-gray-600 text-center mb-4">
         Étape {selectedCategory + 1} sur {steps.length}
       </p>

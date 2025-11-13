@@ -10,6 +10,7 @@ import Publish from "./pages/PublishPage/Publish";
 import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
 import UserConnected from "./components/ProtectedRoutes/UserConnected";
 import BlogDetails from "./pages/Blogs/BlogDetails";
+import Profile from "./pages/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -52,9 +53,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/blog/:id",
+        element: <BlogDetails />,
+      },
+      {
+        path: "/profile/:id",
         element: (
           <UserConnected>
-            <BlogDetails />
+            <Profile />
           </UserConnected>
         ),
       },

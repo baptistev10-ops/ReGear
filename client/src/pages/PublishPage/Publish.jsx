@@ -97,15 +97,12 @@ export default function Publish() {
 
   return (
     <div className="flex flex-col w-screen min-h-screen overflow-x-hidden bg-white">
-      {/* Conteneur commun à tout le contenu */}
       <div className="w-full max-w-[880px] mx-auto flex flex-col gap-4 px-4 sm:px-6 flex-1">
-        {/* Progress + Steps */}
         <div className="flex flex-col gap-2 w-full">
           <ProgressBar />
           <StepsBar />
         </div>
 
-        {/* Contenu central scrollable sur mobile */}
         <div className="flex-1 lg:overflow-visible overflow-y-auto max-h-[75vh] sm:max-h-[80vh] pb-4">
           <motion.div
             key={selectedCategory}
@@ -118,7 +115,6 @@ export default function Publish() {
           </motion.div>
         </div>
 
-        {/* Boutons d’action */}
         <div className="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-between items-center px-4 py-3 sm:px-6 sm:py-4 z-50">
           <button
             onClick={back}

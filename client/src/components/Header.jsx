@@ -24,7 +24,6 @@ export default function Header() {
           />
         </NavLink>
 
-        {/* Menu desktop */}
         <nav className="hidden md:flex gap-4 font-[Inter] items-center">
           <NavLink
             to="/vendre"
@@ -42,7 +41,7 @@ export default function Header() {
           {userConnected ? (
             <>
               <NavLink
-                to="/"
+                to="/profile/:id"
                 className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 flex gap-1 items-center"
               >
                 <FiUser /> {userConnected.username}
@@ -81,7 +80,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Menu mobile */}
       {menuOpen && (
         <div className="md:hidden bg-white bg-opacity-95 border-t border-gray-200 backdrop-blur-sm transition-all duration-300 ease-in-out">
           <nav className="flex flex-col gap-2 p-4 font-[Inter] text-center">

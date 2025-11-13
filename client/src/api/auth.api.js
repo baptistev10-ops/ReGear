@@ -73,3 +73,17 @@ export async function authGoogle(values) {
     console.log(error);
   }
 }
+
+export async function deleteUser(id) {
+  try {
+    const response = await fetch(`${BASE_URL}/user/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

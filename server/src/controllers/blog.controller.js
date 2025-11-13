@@ -59,3 +59,15 @@ export const getBlogById = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
+
+export const getUserBlogCount = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const count = await Blog.countDocuments({ author: id });
+
+    return res.status(200).json({ count });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
