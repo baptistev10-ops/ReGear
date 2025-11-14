@@ -81,7 +81,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white bg-opacity-95 border-t border-gray-200 backdrop-blur-sm transition-all duration-300 ease-in-out">
+        <div className="md:hidden backdrop-blur-sm bg-white bg-opacity-70 border-t border-gray-200 transition-all duration-300 ease-in-out">
           <nav className="flex flex-col gap-2 p-4 font-[Inter] text-center">
             <NavLink
               to="/vendre"
@@ -100,9 +100,12 @@ export default function Header() {
 
             {userConnected ? (
               <>
-                <span className="flex justify-center items-center gap-2 py-2">
+                <NavLink
+                  to={`/profile/${userConnected._id}`}
+                  className="flex justify-center items-center gap-2 py-2"
+                >
                   <FiUser /> {userConnected.username}
-                </span>
+                </NavLink>
                 <button
                   onClick={() => {
                     logout();
