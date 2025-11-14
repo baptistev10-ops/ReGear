@@ -87,3 +87,17 @@ export async function deleteUser(id) {
     console.error(error);
   }
 }
+
+export async function confirmDeleteUser(confirmDelete) {
+  try {
+    const response = await fetch(`${BASE_URL}/user/confirm-delete`, {
+      method: "POST",
+      body: JSON.stringify({ password: confirmDelete }),
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

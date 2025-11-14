@@ -41,7 +41,7 @@ export default function Header() {
           {userConnected ? (
             <>
               <NavLink
-                to="/profile/:id"
+                to={`/profile/${userConnected._id}`}
                 className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 flex gap-1 items-center"
               >
                 <FiUser /> {userConnected.username}

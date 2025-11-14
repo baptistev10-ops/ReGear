@@ -34,17 +34,18 @@ export default function BlogDetails() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 font-roboto">
       <div>
         <div className="flex items-center">
           <NavLink
-            className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4"
+            className="hover:bg-slate-200 transition ease-in duration-100 rounded-lg py-1 px-3 items-center gap-2 inline-flex mb-4 font-opensans"
             to="/"
           >
             <IoArrowBack className="text-sm" />
             <span className="text-sm">Retour</span>
           </NavLink>
         </div>
+
         <div className="w-full h-[350px] bg-gray-200 rounded-xl overflow-hidden">
           <img
             onClick={() => setVisualize(true)}
@@ -54,6 +55,7 @@ export default function BlogDetails() {
             className="w-full h-full object-cover cursor-pointer"
           />
         </div>
+
         {visualize && (
           <div
             onClick={() => setVisualize(false)}
@@ -64,11 +66,11 @@ export default function BlogDetails() {
                 src={imageSelect}
                 alt={blogData.desc?.title}
                 title={blogData.desc?.title}
-                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg hover:scale-150"
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg"
               />
               <button
                 onClick={() => setVisualize(false)}
-                className="absolute top-3 right-3 text-white text-3xl font-bold hover:text-gray-300"
+                className="absolute top-3 right-3 text-white text-3xl font-bold hover:text-gray-300 font-inter"
               >
                 ×
               </button>
@@ -88,66 +90,84 @@ export default function BlogDetails() {
                 alt={`Miniature ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              ;
             </div>
           ))}
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-6 font-roboto">
         <div>
-          <span className="inline-block text-sm font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-md">
+          <span className="inline-block text-sm font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-md font-opensans">
             {blogData.category}
           </span>
-          <h1 className="text-2xl font-semibold mt-2">{blogData.title}</h1>
-          <p className="text-3xl font-bold text-blue-700 mt-2">
+
+          <h1 className="text-2xl font-semibold mt-2 font-inter">
+            {blogData.title}
+          </h1>
+
+          <p className="text-3xl font-bold text-blue-700 mt-2 font-inter">
             {blogData.prixVente}€
           </p>
-          <span className="inline-block bg-blue-100 text-blue-700 text-sm font-medium px-2 py-1 rounded-md mt-1">
+
+          <span className="inline-block bg-blue-100 text-blue-700 text-sm font-medium px-2 py-1 rounded-md mt-1 font-opensans">
             {blogData.etat}
           </span>
-          <p className="text-sm text-gray-500 mt-2">
+
+          <p className="text-sm text-gray-500 mt-2 font-opensans">
             📍 {blogData.ville} · Publié le{" "}
             {new Date(blogData.createdAt).toLocaleDateString("fr-FR")}
           </p>
         </div>
 
         <div>
-          <h2 className="font-semibold text-lg mb-2">Description</h2>
-          <p className="text-gray-700 leading-relaxed">{blogData.desc}</p>
+          <h2 className="font-semibold text-lg mb-2 font-inter">Description</h2>
+          <p className="text-gray-700 leading-relaxed font-roboto">
+            {blogData.desc}
+          </p>
         </div>
 
         <div>
-          <h2 className="font-semibold text-lg mb-2">
+          <h2 className="font-semibold text-lg mb-2 font-inter">
             Spécifications techniques
           </h2>
-          <div className="bg-gray-100 rounded-xl p-4">
+
+          <div className="bg-gray-100 rounded-xl p-4 font-roboto">
             <ul className="space-y-2">
               <li className="flex justify-between">
-                <span className="font-medium">Marque</span>
-                <span>{blogData.marque || "Non renseigné"}</span>
+                <span className="font-medium font-inter">Marque</span>
+                <span className="font-opensans">
+                  {blogData.marque || "Non renseigné"}
+                </span>
               </li>
+
               <li className="flex justify-between">
-                <span className="font-medium">Modèle</span>
-                <span>{blogData.modele || "Non renseigné"}</span>
+                <span className="font-medium font-inter">Modèle</span>
+                <span className="font-opensans">
+                  {blogData.modele || "Non renseigné"}
+                </span>
               </li>
+
               <li className="flex justify-between">
-                <span className="font-medium">Année d’achat</span>
-                <span>{blogData.anneeAchat || "Non renseigné"}</span>
+                <span className="font-medium font-inter">Année d’achat</span>
+                <span className="font-opensans">
+                  {blogData.anneeAchat || "Non renseigné"}
+                </span>
               </li>
+
               <li className="flex justify-between">
-                <span className="font-medium">État</span>
-                <span>{blogData.etat}</span>
+                <span className="font-medium font-inter">État</span>
+                <span className="font-opensans">{blogData.etat}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 pt-2">
-          <BlackButton className="bg-gray-950 text-white">
+          <BlackButton className="bg-gray-950 text-white font-inter">
             Contacter le vendeur
           </BlackButton>
-          <BlackButton className="bg-white text-black border">
+
+          <BlackButton className="bg-white text-black border font-inter">
             Faire une offre
           </BlackButton>
         </div>

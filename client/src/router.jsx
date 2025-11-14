@@ -11,6 +11,7 @@ import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
 import UserConnected from "./components/ProtectedRoutes/UserConnected";
 import BlogDetails from "./pages/Blogs/BlogDetails";
 import Profile from "./pages/Profile/Profile";
+import MentionsLegales from "./pages/MentionsLegales";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
             <Profile />
           </UserConnected>
         ),
+      },
+      {
+        path: "/mentions-legales",
+        element: <MentionsLegales />,
       },
     ],
   },

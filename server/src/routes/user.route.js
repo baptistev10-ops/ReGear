@@ -9,7 +9,9 @@ import {
   deleteUsers,
   detailsUser,
   googleAuth,
+  confirmPassword,
 } from "../controllers/user.controller.js";
+import { protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -30,5 +32,7 @@ router.get("/getusers", getUsers);
 router.delete("/:id", deleteUsers);
 
 router.get("/getusers/:id", detailsUser);
+
+router.post("/confirm-delete", protect, confirmPassword);
 
 export default router;

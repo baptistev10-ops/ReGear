@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendConfirmationEmail } from "../email/email.js";
 import dotenv from "dotenv";
+import crypto from "crypto";
 
 dotenv.config();
 
@@ -110,6 +111,10 @@ export const login = async (req, res) => {
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
     return res.status(400).json({ message: "Mot de passe incorrect" });
+  }
+
+  if (user.isDeleted) {
+    return res.status(403).json({ message: "Ce compte a été supprimé" });
   }
 
   const token = jwt.sign({}, process.env.SECRET_KEY, {
@@ -292,5 +297,31 @@ export const googleAuth = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: "Echec authentification google" });
+  }
+};
+
+export const confirmPassword = async (req, res) => {
+  const password = req.body.password;
+  try {
+    const fullUser = await User.findById(req.user._id);
+
+    const isValid = await bcrypt.compare(password, fullUser.password);
+    if (!isValid) {
+      return res.status(400).json({ message: "Mot de passe incorrect" });
+    }
+    const randomHex = crypto.randomBytes(4).toString("hex");
+
+    await User.findByIdAndUpdate(req.user._id, {
+      email: null,
+      password: null,
+      username: "delete_user_" + randomHex,
+      googleId: null,
+      isDeleted: true,
+      deletedAt: new Date(),
+    });
+    res.status(200).json("Compte supprimé");
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erreur serveur" });
   }
 };
