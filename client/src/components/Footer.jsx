@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full bg-gray-100 py-6 mt-12 border-t">
       <div className="max-w-6xl mx-auto px-6 flex justify-center">
         <NavLink
-          href="/mentions-legales"
+          to="/mentions-legales"
           className="text-sm text-gray-600 hover:text-black transition"
         >
           Mentions légales

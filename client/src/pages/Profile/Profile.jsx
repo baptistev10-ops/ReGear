@@ -150,7 +150,10 @@ export default function Profile() {
               onClick={() => setShowDeleteModal(false)}
               className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 flex-col font-roboto"
             >
-              <div className="bg-white rounded-lg p-9 gap-3 flex flex-col">
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-lg p-9 gap-3 flex flex-col"
+              >
                 <h2 className="font-semibold font-inter">
                   Pour confirmer entrez votre mot de passe
                 </h2>

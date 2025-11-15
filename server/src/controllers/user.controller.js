@@ -312,7 +312,7 @@ export const confirmPassword = async (req, res) => {
     const randomHex = crypto.randomBytes(4).toString("hex");
 
     await User.findByIdAndUpdate(req.user._id, {
-      email: null,
+      email: `deleted_${randomHex}@deleted.com`,
       password: null,
       username: "delete_user_" + randomHex,
       googleId: null,
