@@ -324,6 +324,7 @@ export const confirmPassword = async (req, res) => {
       httpOnly: true,
       secure: process.env.MODE !== "development",
       sameSite: process.env.MODE === "development" ? "Lax" : "None",
+      path: "/",
     });
     res.status(200).json("Compte supprimé");
   } catch (error) {
