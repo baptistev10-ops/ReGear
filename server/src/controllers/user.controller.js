@@ -319,6 +319,12 @@ export const confirmPassword = async (req, res) => {
       isDeleted: true,
       deletedAt: new Date(),
     });
+
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.MODE !== "development",
+      sameSite: process.env.MODE === "development" ? "Lax" : "None",
+    });
     res.status(200).json("Compte supprimé");
   } catch (error) {
     console.error(error);
