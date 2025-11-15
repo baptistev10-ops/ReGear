@@ -190,17 +190,18 @@ export const currentUser = async (req, res) => {
       console.log(decodedToken);
       const currentUser = await User.findById(decodedToken.sub);
       console.log(currentUser);
-      if (currentUser) {
-        res.status(200).json(currentUser);
+
+      if (currentUser && !currentUser.isDeleted) {
+        return res.status(200).json(currentUser);
       } else {
-        res.status(400).json(null);
+        return res.status(400).json(null);
       }
     } catch (error) {
-      res.status(400).json(null);
+      return res.status(400).json(null);
     }
   } else {
     console.log("test current");
-    res.status(400).json(null);
+    return res.status(400).json(null);
   }
 };
 
