@@ -9,7 +9,7 @@ import crypto from "crypto";
 dotenv.config();
 
 const createTokenEmail = (email) => {
-  return jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "120s" });
+  return jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: "900s" });
 };
 // nodemailer
 // export const register = async (req, res) => {
