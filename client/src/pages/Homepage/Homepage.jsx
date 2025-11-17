@@ -8,6 +8,7 @@ import BlogCard from "../Blogs/BlogCard";
 import { useBlog } from "../../components/context/BlogContext";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Homepage() {
   const [filter, setFilter] = useState(false);
@@ -37,7 +38,33 @@ export default function Homepage() {
             Filtrer
           </FilterButton>
         </span>
-        {filter && <Filter />}
+        <AnimatePresence>
+          {filter && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                y: -10,
+                scale: 0.95,
+              }}
+              transition={{
+                duration: 0.45,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 260,
+                damping: 18,
+                mass: 0.6,
+              }}
+            >
+              <Filter />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="w-full mt-11 lg:px-5">

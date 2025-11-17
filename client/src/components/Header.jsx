@@ -4,6 +4,7 @@ import logosmall from "../assets/images/Bap_1024x1024.png";
 import { FiUser, FiMenu, FiX } from "react-icons/fi";
 import { useAuth } from "./context/AuthContext";
 import BlackButton from "./Common/BlackButton";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Header() {
   const { userConnected, logout } = useAuth();
@@ -80,64 +81,86 @@ export default function Header() {
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden backdrop-blur-sm bg-white bg-opacity-70 border-t border-gray-200 transition-all duration-300 ease-in-out">
-          <nav className="flex flex-col gap-2 p-4 font-[Inter] text-center">
-            <NavLink
-              to="/vendre"
-              className="hover:bg-slate-100 rounded-lg py-2"
-              onClick={() => setMenuOpen(false)}
-            >
-              Vendre
-            </NavLink>
-            <NavLink
-              to="/annonces"
-              className="hover:bg-slate-100 rounded-lg py-2"
-              onClick={() => setMenuOpen(false)}
-            >
-              Mes annonces
-            </NavLink>
-
-            {userConnected ? (
-              <>
-                <NavLink
-                  to={`/profile/${userConnected._id}`}
-                  className="flex justify-center items-center gap-2 py-2"
-                >
-                  <FiUser /> {userConnected.username}
-                </NavLink>
-                <button
-                  onClick={() => {
-                    logout();
-                    setMenuOpen(false);
-                  }}
-                  className="hover:bg-slate-100 rounded-lg py-2"
-                >
-                  Déconnexion
-                </button>
-              </>
-            ) : (
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 240,
+                damping: 22,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              y: -15,
+              transition: { duration: 0.25 },
+            }}
+            className="md:hidden backdrop-blur-sm bg-white/70 border-t border-gray-300"
+          >
+            <nav className="flex flex-col gap-2 p-4 font-[Inter] text-center">
               <NavLink
-                to="/login"
-                className="hover:bg-slate-100 rounded-lg py-2 flex justify-center items-center gap-1"
+                to="/vendre"
+                className="hover:bg-slate-100 rounded-lg py-2"
                 onClick={() => setMenuOpen(false)}
               >
-                <FiUser /> Connexion
+                Vendre
               </NavLink>
-            )}
 
-            <BlackButton
-              className="bg-gray-950 text-white mt-3"
-              onClick={() => {
-                navigate("/publish");
-                setMenuOpen(false);
-              }}
-            >
-              + Publier une annonce
-            </BlackButton>
-          </nav>
-        </div>
-      )}
+              <NavLink
+                to="/annonces"
+                className="hover:bg-slate-100 rounded-lg py-2"
+                onClick={() => setMenuOpen(false)}
+              >
+                Mes annonces
+              </NavLink>
+
+              {userConnected ? (
+                <>
+                  <NavLink
+                    to={`/profile/${userConnected._id}`}
+                    className="flex justify-center items-center gap-2 py-2"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <FiUser /> {userConnected.username}
+                  </NavLink>
+
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMenuOpen(false);
+                    }}
+                    className="hover:bg-slate-100 rounded-lg py-2"
+                  >
+                    Déconnexion
+                  </button>
+                </>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="hover:bg-slate-100 rounded-lg py-2 flex justify-center items-center gap-1"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <FiUser /> Connexion
+                </NavLink>
+              )}
+
+              <BlackButton
+                className="bg-gray-950 text-white mt-3"
+                onClick={() => {
+                  navigate("/publish");
+                  setMenuOpen(false);
+                }}
+              >
+                + Publier une annonce
+              </BlackButton>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

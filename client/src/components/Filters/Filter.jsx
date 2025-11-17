@@ -7,6 +7,7 @@ export default function Filter() {
     <div className="border rounded-lg w-full">
       <div className="flex flex-col py-4 px-3">
         <label>Catégorie</label>
+
         <FilterSelect className="mt-2">
           <option value="all">Toutes les cathégories</option>
           <option value="motherboard">Carte mère</option>
@@ -18,30 +19,34 @@ export default function Filter() {
             Ventilateurs et systèmes de refroidissement
           </option>
         </FilterSelect>
+
+        {/* PRIX */}
         <div className="w-full flex flex-col mt-4">
           <label>Prix</label>
-          <div className="mt-2 flex items-center">
+
+          {/* ⭐ RESPONSIVE FIX ICI */}
+          <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <Input
               type="number"
-              className="w-full mr-6 px-3 focus:border border-gray-300 rounded-lg outline-none
-         focus:border-gray-400 focus:ring-4 focus:ring-gray-300
-         transition ease-out duration-100"
+              className="w-full px-3 rounded-lg focus:border focus:border-gray-400 focus:ring-4 focus:ring-gray-300 transition"
               placeholder="Min"
-              id="min/max"
             />
-            <span>-</span>
+
+            <span className="hidden sm:block">-</span>
+
             <Input
               type="number"
-              className="w-full ml-6 px-3 py-2 focus:border border-gray-300 rounded-lg outline-none
-         focus:border-gray-400 focus:ring-4 focus:ring-gray-300
-         transition ease-out duration-100"
+              className="w-full px-3 py-2 rounded-lg focus:border focus:border-gray-400 focus:ring-4 focus:ring-gray-300 transition"
               placeholder="Max"
-              id="min/max"
             />
-            <FilterButton className="ml-3 text-sm">OK</FilterButton>
+
+            {/* Bouton OK */}
+            <FilterButton className="w-full sm:w-auto text-sm">OK</FilterButton>
           </div>
+
+          {/* ETAT */}
           <div className="mt-4">
-            <label htmlFor="">État</label>
+            <label>État</label>
             <FilterSelect className="mt-2 w-full">
               <option value="all-status">Tous les états</option>
               <option value="new">Neuf</option>
