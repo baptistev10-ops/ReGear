@@ -209,8 +209,21 @@ export default function Register({ activeSwitchLog }) {
                 id="rgpd"
                 {...register("rgpd")}
               />
-              J'accepte les conditions d'utilisation et la politique de
-              confidentialité
+              <span>
+                J’accepte que mes données personnelles soient collectées et
+                utilisées conformément à la{" "}
+                <NavLink
+                  to="/politique-confidentialite"
+                  className="text-blue-600 underline"
+                >
+                  Politique de Confidentialité
+                </NavLink>{" "}
+                et aux{" "}
+                <NavLink to="/cgu" className="text-blue-600 underline">
+                  Conditions Générales d’Utilisation
+                </NavLink>
+                .
+              </span>
             </label>
             {errors.rgpd && (
               <p className="text-red-500 text-xs">{errors.rgpd.message}</p>
