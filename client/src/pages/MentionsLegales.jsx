@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 export default function MentionsLegales() {
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 text-gray-800 leading-relaxed font-roboto">
-      {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <NavLink
           to="/"
@@ -20,7 +19,6 @@ export default function MentionsLegales() {
         </h1>
       </div>
 
-      {/* 1 - Éditeur */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           1. Éditeur du site
@@ -33,7 +31,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 2 - Responsable */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           2. Responsable de la publication
@@ -50,7 +47,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 3 - Hébergement */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           3. Hébergement
@@ -91,7 +87,6 @@ export default function MentionsLegales() {
         </div>
       </section>
 
-      {/* 4 - Propriété */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           4. Propriété intellectuelle
@@ -103,7 +98,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 5 - RGPD */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           5. Données personnelles – RGPD
@@ -132,7 +126,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 6 */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           6. Cookies
@@ -143,7 +136,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 7 */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           7. Limitation de responsabilité
@@ -154,7 +146,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 8 */}
       <section className="mb-10">
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           8. Conditions d’utilisation
@@ -165,7 +156,6 @@ export default function MentionsLegales() {
         </p>
       </section>
 
-      {/* 9 */}
       <section>
         <h2 className="text-xl md:text-2xl font-semibold mb-2 font-inter">
           9. Contact

@@ -137,7 +137,7 @@ export default function Register({ activeSwitchLog }) {
         <div className="flex flex-col mb-2 gap-5">
           <div className="flex flex-col gap-1">
             <label htmlFor="nom" className="mb-1 text-sm">
-              Nom complet <span className="text-red-600">*</span>
+              Pseudonyme <span className="text-red-600">*</span>
             </label>
             <Input
               {...register("username")}
